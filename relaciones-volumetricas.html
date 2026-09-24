@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Relaciones volumétricas · Mecánica de suelos</title>
+  <style id="app-styles">
+:root{--ink:#183b3b;--muted:#5c706f;--accent:#14655d;--line:#dce5e1;--paper:#fff;--bg:#f4f6f2;--soft:#eaf2ee;--brown:#ad744b;--blue:#3a829b;font-family:Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--bg);font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}button,input,select,a{outline-offset:4px}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #258b7a}[hidden]{display:none!important}.skip-link{position:absolute;left:12px;top:-90px;background:white;padding:12px;z-index:5}.skip-link:focus{top:12px}.site-header{display:flex;justify-content:space-between;align-items:center;padding:22px 4%;background:#fff;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:750;letter-spacing:1.7px}.brand-icon{display:grid;place-items:center;font-size:32px;width:44px;height:44px;color:white;background:var(--accent);border-radius:10px}.brand small{display:block;font-size:11px;font-weight:400;letter-spacing:.2px;margin-top:6px;color:var(--muted)}.local-badge{font-size:12px;color:var(--muted);background:var(--bg);padding:9px 13px;border-radius:30px}.local-badge span{color:#3d8264;margin-right:5px}main{max-width:1500px;margin:auto;padding:35px 4% 55px}.eyebrow{font-size:10px;letter-spacing:1.9px;font-weight:750;color:var(--accent);margin:0 0 12px}h1{font-size:clamp(28px,3vw,39px);letter-spacing:-1.3px;margin:6px 0 10px;font-weight:650}h2{font-size:19px;letter-spacing:-.4px;margin:7px 0}h3{font-size:16px}p{line-height:1.65}.intro>p:last-child{color:var(--muted);font-size:14px;margin-bottom:29px}.workspace-grid{display:grid;grid-template-columns:355px minmax(0,1fr);gap:26px;align-items:start}.input-panel{border:1px solid var(--line);border-radius:14px;background:white;padding:23px}.panel-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:22px}.panel-heading h2{font-size:17px}.text-button{padding:4px 0;background:none;border:0;color:var(--accent);font-size:12px;text-decoration:underline;text-underline-offset:4px;white-space:nowrap}.field{display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:600;position:relative}.field span{font-size:11px;color:var(--muted);font-weight:400}.field input,.field select{width:100%;min-width:0;border:1px solid #c9d6ce;border-radius:6px;padding:10px 11px;background:#fff;color:var(--ink);height:40px}.field input::placeholder{color:#7d8d84;font-weight:400}.field input[aria-invalid=true]{border-color:#b43d32;background:#fff5f2}.system-row{display:grid;grid-template-columns:1.15fr 1fr;gap:12px;margin-top:15px}.density-unit{position:absolute;right:0;top:0}.input-help{font-size:12px;color:var(--muted);background:var(--bg);padding:12px;border-radius:6px;margin:17px 0 22px}fieldset{border:0;border-top:1px solid var(--line);padding:17px 0 5px;margin:20px 0 0;min-width:0}legend{font-size:12px;font-weight:700;padding-right:10px;color:var(--accent)}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px}.field-name{line-height:1.4;min-height:34px}.form-actions{display:flex;gap:8px;margin-top:22px}.button{border-radius:7px;padding:11px 15px;font-size:12px;font-weight:650;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:40px}.primary{background:var(--accent);color:white}.primary:hover:not(:disabled){background:#104f48}.secondary{background:#fff;border-color:#cbd8d0;color:var(--ink)}.secondary:hover:not(:disabled){background:var(--soft)}.form-actions .primary{flex:1}.report-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:3px 0 18px}.toolbar-actions{display:flex;gap:9px;flex-wrap:wrap}.report-toolbar h2{margin-bottom:0}.report-toolbar .eyebrow{font-size:10px}.empty-state{border:1px dashed #bfcfc4;border-radius:14px;min-height:555px;text-align:center;padding:70px 35px;background:linear-gradient(150deg,#fff,#f1f5ee)}.empty-state>p:not(.eyebrow){max-width:395px;margin:15px auto;font-size:14px;color:var(--muted)}.empty-state h2{font-size:23px}.empty-art{width:108px;height:133px;display:flex;flex-direction:column;gap:5px;margin:0 auto 30px;transform:skewY(-8deg)}.empty-art span{height:30%;border-radius:5px;background:#d7e0dc;border:1px solid #b3c4bc}.empty-art span:nth-child(2){background:#82b2c0;border-color:#639aaa}.empty-art span:nth-child(3){background:#bd9472;border-color:#ac805c}.empty-legend{display:flex;justify-content:center;gap:22px;color:var(--muted);font-size:12px;margin-top:28px}.empty-legend span:nth-child(2){color:var(--blue)}.empty-legend span:nth-child(3){color:var(--brown)}.status{border-radius:8px;background:#fff0e8;border:1px solid #ecc8b3;color:#7a3923;padding:12px 16px;font-size:13px;margin-bottom:18px}.status ul{padding-left:18px;margin:6px 0}.status.success{color:var(--accent);background:var(--soft);border-color:#c3d8cb}.print-help{font-size:12px;color:var(--muted);margin:0 0 17px}#report{padding:32px;background:white;border:1px solid var(--line);border-radius:14px;overflow-wrap:anywhere}.report-heading{border-bottom:2px solid var(--accent);padding-bottom:20px;margin-bottom:22px}.report-heading h2{font-size:27px}.report-heading .project{font-size:17px;margin:8px 0;color:var(--accent)}.report-meta{font-size:12px;color:var(--muted);margin:7px 0}.report-section{margin-top:28px}.section-title{display:flex;gap:10px;align-items:baseline;font-size:17px;margin-bottom:17px}.section-title span{font-size:11px;color:var(--accent);font-weight:400}.summary-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.summary-card{background:var(--soft);padding:14px;border-radius:7px;font-size:11px;color:var(--muted)}.summary-card strong{display:block;font-size:24px;font-weight:600;color:var(--ink);margin:8px 0 3px}.summary-card small{font-size:11px}.phase-figure{margin:0;border:1px solid var(--line);border-radius:8px;padding:14px 12px;background:#fcfdfb}.phase-figure svg{width:100%;height:auto;display:block}.phase-figure figcaption{font-size:11px;color:var(--muted);line-height:1.6;margin:6px}.diagram-note,.notice{background:#f7f4ea;padding:12px 15px;font-size:12px;border-left:3px solid #b89942;line-height:1.7}.report-table{border-collapse:collapse;width:100%;font-size:12px;table-layout:fixed}.report-table th{text-align:left;background:var(--soft);color:var(--accent);font-size:11px}.report-table td,.report-table th{padding:10px 8px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.report-table th:first-child{width:35%}.report-table .numeric{text-align:right;font-variant-numeric:tabular-nums}.tag{font-size:10px;color:var(--accent)}.step{margin:12px 0;padding:14px 17px;border:1px solid var(--line);border-left:3px solid #609a89;border-radius:5px}.step h4{font-size:12px;margin:0 0 9px}.formula{font-family:Cambria,Georgia,serif;font-size:16px;line-height:1.65;margin:6px 0;overflow-wrap:anywhere}.substitution{font-size:13px;color:var(--muted);line-height:1.8}.step-result{font-size:13px;color:var(--accent);font-weight:650;margin:7px 0 0}.report-note{font-size:12px;color:var(--muted)}.report-footer{font-size:11px;color:var(--muted);border-top:1px solid var(--line);margin-top:30px;padding-top:15px}.reference-list{padding-left:20px;font-size:13px;line-height:1.9}.site-footer{border-top:1px solid var(--line);padding:22px 4%;font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+@media(min-width:1400px){.workspace-grid{grid-template-columns:380px minmax(0,1fr)}}
+@media(max-width:1000px){.workspace-grid{grid-template-columns:315px minmax(0,1fr);gap:17px}.input-panel{padding:17px}#report{padding:22px}.report-toolbar{align-items:flex-start;flex-direction:column}.summary-cards{gap:6px}.summary-card{padding:10px}.summary-card strong{font-size:20px}}
+@media(max-width:760px){main{padding:25px 16px}.site-header{padding:17px}.local-badge{display:none}.workspace-grid{grid-template-columns:1fr}.report-toolbar{flex-direction:row;align-items:center;flex-wrap:wrap;margin-top:12px}.input-panel{padding:21px}.empty-state{min-height:400px;padding:45px 20px}#report{padding:20px 14px}.report-heading h2{font-size:23px}.summary-card strong{font-size:21px}.report-table{font-size:11px}.report-table td,.report-table th{padding:9px 4px}.site-footer{gap:15px;line-height:1.6;flex-wrap:wrap}.phase-figure{padding:8px 0}.brand{font-size:11px}}
+@page{size:A4;margin:17mm 15mm}
+.pdf-preview{padding:20px;margin:0 0 24px;border:1px solid var(--line);border-radius:12px;background:white;scroll-margin-top:20px}.preview-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.preview-actions{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.preview-actions a{text-decoration:none}.pdf-preview iframe{display:block;width:100%;height:75vh;min-height:420px;border:1px solid var(--line);border-radius:5px;background:#f4f4f4}
+@media print{#report[hidden]{display:none!important}}
+@media print{
+  :root,body{background:white;color:#172d2b;font-size:10pt}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.no-print,.skip-link,#empty,noscript{display:none!important}main{padding:0;max-width:none;margin:0}.workspace-grid,.output-panel{display:block}#report{display:block!important;border:0;border-radius:0;padding:0;overflow:visible}.report-heading{padding-bottom:12pt;margin-bottom:16pt}.report-heading h2{font-size:23pt}.report-meta{font-size:9pt}.summary-cards{display:grid;grid-template-columns:repeat(3,1fr)}.summary-card{padding:10pt}.summary-card strong{font-size:19pt}.report-section{margin-top:18pt}.section-title{break-after:avoid;font-size:14pt;margin-bottom:10pt}.phase-figure{break-inside:avoid;padding:8pt}.phase-figure svg{max-height:90mm}.report-table{font-size:9pt}.report-table td,.report-table th{padding:6pt}.report-table thead{display:table-header-group}.report-table tr{break-inside:avoid}.step{break-inside:avoid;margin:9pt 0;padding:10pt}.step h4{font-size:10pt}.formula{font-size:12pt}.substitution,.step-result{font-size:10pt}.summary-cards,.notice{break-inside:avoid}p{orphans:3;widows:3}.report-footer{font-size:9pt}.report-note{font-size:9pt}a{color:inherit;text-decoration:none}
+}
+
+</style>
+  
+  
+  
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Saltar al contenido</a>
+  <header class="site-header no-print">
+    <div class="brand"><span class="brand-icon" aria-hidden="true">▱</span><div>MECÁNICA DE SUELOS<small>Laboratorio de relaciones de fase</small></div></div>
+    <span class="local-badge"><span aria-hidden="true">●</span> Funciona sin conexión</span>
+  </header>
+  <main id="workspace">
+    <div class="intro no-print"><p class="eyebrow">ANÁLISIS Y REPORTE</p><h1>Relaciones volumétricas</h1><p>De los datos de tu muestra a un informe claro, paso a paso.</p></div>
+    <div class="workspace-grid">
+      <aside class="input-panel no-print" aria-labelledby="input-title">
+        <div class="panel-heading"><div><span class="eyebrow">01 / ENTRADA</span><h2 id="input-title">Datos de la muestra</h2></div><button type="button" id="example" class="text-button">Usar ejemplo</button></div>
+        <form id="soil-form" novalidate>
+          <label class="field project-field" for="project">Nombre del proyecto o muestra<input id="project" maxlength="120" placeholder="Ej. Muestra de suelo 01"></label>
+          <div class="system-row"><label class="field" for="system">Unidades<select id="system"><option value="SI">SI · kN y m³</option><option value="CGS">CGS · gf y cm³</option></select></label><label class="field" for="gammaw">γw <span class="density-unit">kN/m³</span><input id="gammaw" value="9.81" inputmode="decimal" autocomplete="off"></label></div>
+          <p class="input-help">Ingresa los datos conocidos y deja vacíos los demás. ω, n y S se ingresan en porcentaje: <strong>15 equivale a 15 %.</strong></p>
+          <div id="input-groups"></div>
+          <div class="form-actions"><button class="button primary" type="submit">Calcular relaciones <span aria-hidden="true">→</span></button><button type="button" id="clear" class="button secondary">Limpiar</button></div>
+        </form>
+      </aside>
+      <div class="output-panel">
+        <div id="status" class="status no-print" role="status" aria-live="polite" hidden></div>
+        <div class="report-toolbar no-print"><div><span class="eyebrow">02 / RESULTADO</span><h2>Tu informe</h2></div><div class="toolbar-actions"><button type="button" id="download" class="button secondary" disabled>Descargar HTML</button><button type="button" id="download-tex" class="button secondary" disabled>Descargar .tex</button><button type="button" id="print" class="button secondary" disabled>Imprimir vista web</button><button type="button" id="latex-pdf" class="button primary" disabled>Ver PDF LaTeX</button></div></div>
+        <p id="print-help" class="print-help no-print" hidden><strong>Ver PDF LaTeX</strong> compila el informe y muestra una vista previa. Después puedes descargar el PDF o su archivo <strong>.tex</strong> editable.</p>
+        <section id="pdf-preview" class="pdf-preview no-print" aria-labelledby="pdf-preview-title" hidden>
+          <div class="preview-heading"><div><p class="eyebrow">REPORTE COMPILADO</p><h2 id="pdf-preview-title" tabindex="-1">Vista previa del PDF</h2></div><button type="button" id="close-preview" class="button secondary">Cerrar vista previa</button></div>
+          <div class="preview-actions"><a id="save-pdf" class="button primary" download="relaciones-volumetricas.pdf">Descargar PDF</a><button id="preview-tex" type="button" class="button secondary">Descargar .tex</button><a id="open-pdf" class="button secondary" target="_blank" rel="noopener">Abrir en otra pestaña</a></div>
+          <p class="print-help">Si tu navegador no muestra el documento aquí, usa “Abrir en otra pestaña” o “Descargar PDF”.</p>
+          <iframe id="pdf-frame" title="Informe PDF de relaciones volumétricas"></iframe>
+        </section>
+        <div id="empty" class="empty-state"><div class="empty-art" aria-hidden="true"><span></span><span></span><span></span></div><p class="eyebrow">CADA FASE CUENTA</p><h2>Conoce la composición de tu suelo</h2><p>Completa los datos de la izquierda o carga el ejemplo. Aquí aparecerán el diagrama, los resultados y el desarrollo del cálculo.</p><div class="empty-legend"><span>○ Aire</span><span>● Agua</span><span>■ Sólidos</span></div></div>
+        <article id="report" aria-label="Informe de relaciones volumétricas" hidden></article>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer no-print">Relaciones volumétricas <span>Cálculo local · Vista completa · Reporte imprimible</span></footer>
+  <noscript>Activa JavaScript en tu navegador para realizar los cálculos.</noscript>
+<script>
+/* Motor de cálculo compartido por la página y las comprobaciones. */
+(function (root) {
+  'use strict';
+  const variables = [
+    ['W','W','Peso total','weight'], ['Ws','Ws','Peso de sólidos','weight'],
+    ['Ww','Ww','Peso de agua','weight'], ['V','V','Volumen total','volume'],
+    ['Vs','Vs','Volumen de sólidos','volume'], ['Vv','Vv','Volumen de vacíos','volume'],
+    ['Vw','Vw','Volumen de agua','volume'], ['Va','Va','Volumen de aire','volume'],
+    ['Gs','Gs','Gravedad específica','ratio'], ['w','ω','Contenido de humedad','percent'],
+    ['e','e','Relación de vacíos','ratio'], ['n','n','Porosidad','percent'],
+    ['S','S','Grado de saturación','percent'], ['gamma','γ','Peso unitario húmedo','density'],
+    ['gammad','γd','Peso unitario seco','density'], ['gammasat','γsat','Peso unitario saturado','density'],
+    ['gammasub','γ′','Peso unitario sumergido','density'], ['gammaw','γw','Peso específico del agua','density']
+  ].map(([key,symbol,label,type]) => ({key,symbol,label,type}));
+  const byKey = Object.fromEntries(variables.map(v => [v.key,v]));
+  const rules = [];
+  function rule(out, deps, expression, calculate) { rules.push({out,deps,expression,calculate}); }
+  function sum(total,a,b) {
+    rule(total,[a,b],`${a} + ${b}`,(x,y)=>x+y);
+    rule(a,[total,b],`${total} − ${b}`,(x,y)=>x-y);
+    rule(b,[total,a],`${total} − ${a}`,(x,y)=>x-y);
+  }
+  function product(total,a,b) {
+    rule(total,[a,b],`${a} × ${b}`,(x,y)=>x*y);
+    rule(a,[total,b],`${total} / ${b}`,(x,y)=>y===0?NaN:x/y);
+    rule(b,[total,a],`${total} / ${a}`,(x,y)=>y===0?NaN:x/y);
+  }
+  sum('W','Ws','Ww'); sum('V','Vs','Vv'); sum('Vv','Vw','Va');
+  product('Ww','w','Ws'); product('Vv','e','Vs'); product('Vv','n','V');
+  product('Vw','S','Vv'); product('W','gamma','V'); product('Ws','gammad','V');
+  product('Ww','Vw','gammaw');
+  rule('n',['e'],'e / (1 + e)',e=>e/(1+e));
+  rule('e',['n'],'n / (1 − n)',n=>n===1?NaN:n/(1-n));
+  rule('Ws',['Gs','Vs','gammaw'],'Gs × Vs × gammaw',(g,v,w)=>g*v*w);
+  rule('Vs',['Ws','Gs','gammaw'],'Ws / (Gs × gammaw)',(w,g,gw)=>w/(g*gw));
+  rule('Gs',['Ws','Vs','gammaw'],'Ws / (Vs × gammaw)',(w,v,gw)=>w/(v*gw));
+  rule('gammad',['gamma','w'],'gamma / (1 + w)',(g,w)=>g/(1+w));
+  rule('gamma',['gammad','w'],'gammad × (1 + w)',(g,w)=>g*(1+w));
+  rule('w',['gamma','gammad'],'gamma / gammad − 1',(g,d)=>g/d-1);
+  rule('gammad',['Gs','gammaw','e'],'Gs × gammaw / (1 + e)',(g,w,e)=>g*w/(1+e));
+  rule('e',['Gs','gammaw','gammad'],'Gs × gammaw / gammad − 1',(g,w,d)=>g*w/d-1);
+  rule('Gs',['gammad','e','gammaw'],'gammad × (1 + e) / gammaw',(d,e,w)=>d*(1+e)/w);
+  rule('e',['Gs','w','S'],'Gs × w / S',(g,w,s)=>s===0?NaN:g*w/s);
+  rule('S',['Gs','w','e'],'Gs × w / e',(g,w,e)=>e===0?NaN:g*w/e);
+  rule('w',['S','e','Gs'],'S × e / Gs',(s,e,g)=>s*e/g);
+  rule('Gs',['S','e','w'],'S × e / w',(s,e,w)=>w===0?NaN:s*e/w);
+  rule('gamma',['Gs','gammaw','w','e'],'Gs × gammaw × (1 + w) / (1 + e)',(g,gw,w,e)=>g*gw*(1+w)/(1+e));
+  rule('gammasat',['Gs','e','gammaw'],'(Gs + e) × gammaw / (1 + e)',(g,e,w)=>(g+e)*w/(1+e));
+  rule('gammasub',['gammasat','gammaw'],'gammasat − gammaw',(g,w)=>g-w);
+  rule('gammasat',['gammasub','gammaw'],'gammasub + gammaw',(g,w)=>g+w);
+  const fmt = value => Number(value.toPrecision(6)).toLocaleString('es-MX',{maximumSignificantDigits:6});
+  const unit = (key,system) => ({weight:system==='SI'?'kN':'gf',volume:system==='SI'?'m³':'cm³',density:system==='SI'?'kN/m³':'gf/cm³',percent:'%',ratio:'—'})[byKey[key].type];
+  const display = (key,value) => fmt(byKey[key].type==='percent'?value*100:value);
+  function expressionText(expression, values) {
+    return expression.replace(/[A-Za-z]+/g,key=>values ? `(${fmt(values[key])})` : byKey[key].symbol);
+  }
+  function validate(key,value) {
+    if (!Number.isFinite(value)) return 'debe ser un número finito';
+    if (value<0 && key!=='gammasub') return 'no puede ser negativo';
+    if (['W','Ws','V','Vs','Gs','gamma','gammad','gammasat','gammaw'].includes(key) && value<=0) return 'debe ser mayor que cero';
+    if (['n','S'].includes(key) && value>1) return 'no puede superar el 100 %';
+    if (key==='n' && value===1) return 'debe ser menor que el 100 % para un suelo con sólidos';
+    return '';
+  }
+  function solve(input,gammaw=9.81) {
+    const values = {...input,gammaw}, steps=[], errors=[], warnings=[];
+    for (const [key,val] of Object.entries(values)) {
+      if (!byKey[key]) { errors.push(`Variable desconocida: ${key}`); continue; }
+      const error=validate(key,val); if(error) errors.push(`${byKey[key].symbol}: ${error}.`);
+    }
+    if(errors.length) return {values,steps,errors,warnings,inputKeys:Object.keys(input)};
+    for(let pass=0;pass<60;pass++) {
+      let changed=false;
+      for(const r of rules) {
+        if(Object.hasOwn(values,r.out) || !r.deps.every(k=>Object.hasOwn(values,k))) continue;
+        let value=r.calculate(...r.deps.map(k=>values[k]));
+        if(!Number.isFinite(value)) continue;
+        if(value<0 && value>-1e-12) value=0;
+        values[r.out]=value;
+        steps.push({key:r.out,expression:r.expression,formula:`${byKey[r.out].symbol} = ${expressionText(r.expression)}`,substitution:expressionText(r.expression,values),value});
+        changed=true;
+      }
+      if(!changed) break;
+    }
+    for(const [key,val] of Object.entries(values)) {
+      const error=validate(key,val); if(error) errors.push(`${byKey[key].symbol} calculado: ${error}. Revisa los datos.`);
+    }
+    const conflicts=new Set();
+    for(const r of rules) {
+      if(!Object.hasOwn(values,r.out) || !r.deps.every(k=>Object.hasOwn(values,k))) continue;
+      const expected=r.calculate(...r.deps.map(k=>values[k]));
+      if(Number.isFinite(expected) && Math.abs(expected-values[r.out])>1e-5*Math.max(1e-9,Math.abs(expected),Math.abs(values[r.out]))) {
+        const signature=[r.out,...r.deps].sort().join(',');
+        if(!conflicts.has(signature)) errors.push(`Datos incompatibles: ${byKey[r.out].symbol} = ${expressionText(r.expression)} no se cumple con los valores ingresados.`);
+        conflicts.add(signature);
+      }
+    }
+    if(values.Gs!==undefined && (values.Gs<2 || values.Gs>3.5)) warnings.push('Gs está fuera del intervalo típico de 2 a 3.5. Verifica el material y las unidades.');
+    const missing=variables.filter(v=>!Object.hasOwn(values,v.key));
+    if(missing.length) warnings.push(`Cálculo parcial. Faltan datos independientes para obtener: ${missing.map(v=>v.symbol).join(', ')}.`);
+    return {values,steps,errors:[...new Set(errors)],warnings,inputKeys:Object.keys(input)};
+  }
+  function classify(values) {
+    const lines=[];
+    if(values.S!==undefined) lines.push(`Saturación: ${display('S',values.S)} %. ${values.S>=0.995?'Suelo saturado':values.S>=0.85?'Suelo casi saturado':values.S>=0.5?'Suelo parcialmente saturado':'Suelo con bajo grado de saturación'}.`);
+    if(values.e!==undefined) lines.push(`Relación de vacíos: ${fmt(values.e)}. La interpretación de la compacidad depende del tipo de suelo y de sus valores de referencia.`);
+    return lines;
+  }
+  root.Soil={variables,byKey,fmt,unit,display,solve,classify,validate};
+})(globalThis);
+
+</script>
+<script>
+/* Reporte LaTeX independiente: gráfico vectorial TikZ y fórmulas matemáticas. */
+(function(root) {
+  'use strict';
+  const symbols={W:'W',Ws:'W_s',Ww:'W_w',V:'V',Vs:'V_s',Vv:'V_v',Vw:'V_w',Va:'V_a',Gs:'G_s',w:'\\omega',e:'e',n:'n',S:'S',gamma:'\\gamma',gammad:'\\gamma_d',gammasat:'\\gamma_{sat}',gammasub:"\\gamma'",gammaw:'\\gamma_w'};
+  const escapes={'\\':'\\textbackslash{}','{':'\\{','}':'\\}','$':'\\$','&':'\\&','#':'\\#','%':'\\%','_':'\\_','~':'\\textasciitilde{}','^':'\\textasciicircum{}','³':'\\textsuperscript{3}','²':'\\textsuperscript{2}','—':'---','–':'--','−':'-','γ':'\\ensuremath{\\gamma}','ω':'\\ensuremath{\\omega}','′':"'",'×':'\\ensuremath{\\times}','≈':'\\ensuremath{\\approx}','≤':'\\ensuremath{\\leq}','≥':'\\ensuremath{\\geq}'};
+  function text(value) {return Array.from(String(value)).map(c=>escapes[c] || (/\s/.test(c)?' ':c.codePointAt(0)<256&&c.codePointAt(0)>=32?c:'?')).join('');}
+  function number(value) {
+    if(!Number.isFinite(value)) throw new Error('El reporte contiene un valor no finito.');
+    const parts=Number(value.toPrecision(6)).toString().split('e');
+    return parts.length===1?parts[0]:`${parts[0]} \\times 10^{${Number(parts[1])}}`;
+  }
+  // Las expresiones provienen exclusivamente de las reglas del motor; nunca se evalúa código.
+  function expression(source,values) {
+    const tokens=source.match(/[A-Za-z]+|\d+(?:\.\d+)?|[()+−×/]/g)||[];
+    if(tokens.join('')!==source.replace(/\s/g,'')) throw new Error('Expresión no válida.');
+    let index=0;
+    function atom(){
+      const token=tokens[index++];
+      if(token==='('){const result=add();if(tokens[index++]!==')')throw new Error('Paréntesis incompletos.');return result;}
+      if(Object.hasOwn(symbols,token))return {kind:'leaf',value:values?number(values[token]):symbols[token]};
+      if(/^\d+(\.\d+)?$/.test(token))return {kind:'leaf',value:token};
+      throw new Error('Símbolo no válido en la fórmula.');
+    }
+    function product(){let left=atom();while(['×','/'].includes(tokens[index])){const op=tokens[index++];left={op,left,right:atom()};}return left;}
+    function add(){let left=product();while(['+','−'].includes(tokens[index])){const op=tokens[index++];left={op,left,right:product()};}return left;}
+    function render(node,parent=0){
+      if(node.kind==='leaf')return node.value.startsWith('-')?`\\left(${node.value}\\right)`:node.value;
+      if(node.op==='/')return `\\frac{${render(node.left)}}{${render(node.right)}}`;
+      const precedence=node.op==='×'?2:1;
+      const output=`${render(node.left,precedence)} ${node.op==='×'?'\\cdot':node.op==='−'?'-':'+'} ${render(node.right,precedence+(node.op==='−'?1:0))}`;
+      return precedence<parent?`\\left(${output}\\right)`:output;
+    }
+    const tree=add();if(index!==tokens.length)throw new Error('Fórmula incompleta.');return render(tree);
+  }
+  function unit(key,system){const raw=root.Soil.unit(key,system);return raw==='—'?'':`\\,\\text{${text(raw)}}`;}
+  function resultValue(key,val,system){return number(root.Soil.byKey[key].type==='percent'?val*100:val)+unit(key,system);}
+  function table(keys,report,origin=false) {
+    const header=`Variable & Símbolo & Valor${origin?' & Origen':''} \\\\`;
+    return [String.raw`\begin{longtable}{@{}p{${origin?'5.0':'6.5'}cm}cl${origin?'l':''}@{}}`,String.raw`\toprule`,header,String.raw`\midrule\endfirsthead`,String.raw`\toprule`,header,String.raw`\midrule\endhead`,String.raw`\bottomrule\endfoot`,...keys.map(key=>`${text(root.Soil.byKey[key].label)} & $${symbols[key]}$ & $${resultValue(key,report.values[key],report.system)}$${origin?` & ${key==='gammaw'?'Referencia':report.inputKeys.includes(key)?'Dato':'Calculado'}`:''} \\\\`),String.raw`\end{longtable}`].join('\n');
+  }
+  function diagram(report) {
+    const v=report.values;
+    if(!['V','Vs','Vw','Va'].every(k=>Number.isFinite(v[k]))||v.V<=0)return 'Faltan volúmenes para representar las fases a escala. Los resultados disponibles se incluyen en la tabla.';
+    const hs=5*v.Vs/v.V,hw=5*v.Vw/v.V,ha=5*v.Va/v.V;
+    const pos=x=>x.toFixed(6);
+    const lines=[String.raw`\begin{center}\begin{tikzpicture}[x=1cm,y=1cm,font=\small]`,String.raw`\node[font=\bfseries,text=accent] at (2,6.1) {VOLUMEN};`,String.raw`\node[font=\bfseries,text=accent] at (7.7,6.1) {PESO};`];
+    // Solo escribir dentro de una fase cuando caben la letra y sus márgenes.
+    function phase(x,width,y,h,color,label){if(h<=0)return;lines.push(`\\filldraw[fill=${color},draw=white] (${x},${pos(y)}) rectangle (${x+width},${pos(y+h)});`);if(h>0.65)lines.push(`\\node[inner sep=3pt,text=${color==='air'?'black':'white'},font=\\bfseries] at (${x+width/2},${pos(y+h/2)}) {${label}};`);}
+    phase(0,4,0,hs,'solid','SÓLIDOS');phase(0,4,hs,hw,'water','AGUA');phase(0,4,hs+hw,ha,'air','AIRE');
+    if(hw+ha>0){lines.push(`\\draw[<->,red!65!black] (-0.4,${pos(hs)}) -- (-0.4,5);`);lines.push(`\\node[anchor=east,align=right,fill=white,inner sep=3pt,text=red!65!black] at (-1.05,${pos((hs+5)/2)}) {$V_v$\\\\[3pt]$${number(v.Vw+v.Va)}$};`);}
+    lines.push(String.raw`\draw[<->] (4.4,0) -- (4.4,5);\node[anchor=west,fill=white,inner sep=3pt] at (4.85,2.5) {$V$};`);
+    lines.push(`\\node at (2,-0.75) {$V = ${resultValue('V',v.V,report.system)}$};`);
+    if(Number.isFinite(v.Ws)&&Number.isFinite(v.Ww)&&v.Ws+v.Ww>0){const total=v.Ws+v.Ww,solid=5*v.Ws/total;phase(6.5,2.4,0,solid,'weight','$W_s$');phase(6.5,2.4,solid,5-solid,'water','$W_w$');lines.push(String.raw`\node[fill=white,inner sep=3pt] at (7.7,5.55) {$W_a=0$};`);lines.push(`\\node at (7.7,-0.75) {$W=${resultValue('W',total,report.system)}$};`);}else lines.push(String.raw`\node at (7.7,2.5) {Faltan pesos};`);
+    lines.push(String.raw`\end{tikzpicture}\end{center}`);
+    lines.push(`\\noindent\\small Sólidos: $${resultValue('Vs',v.Vs,report.system)}$; agua: $${resultValue('Vw',v.Vw,report.system)}$; aire: $${resultValue('Va',v.Va,report.system)}$.\\par\\normalsize`);
+    return lines.join('\n');
+  }
+  function build(report) {
+    const {values,steps,inputKeys,system}=report;
+    const keys=root.Soil.variables.filter(v=>Object.hasOwn(values,v.key)).map(v=>v.key);
+    const date=new Date(report.date||Date.now());
+    const content=[String.raw`\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,longtable,array,xcolor,tikz,fancyhdr}
+\usepackage[unicode,hidelinks]{hyperref}
+\definecolor{accent}{HTML}{14655D}
+\definecolor{solid}{HTML}{AD744B}
+\definecolor{water}{HTML}{3A829B}
+\definecolor{air}{HTML}{D6E2DD}
+\definecolor{weight}{HTML}{B08843}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Relaciones volumétricas}
+\fancyhead[R]{\small Mecánica de suelos}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+\renewcommand{\arraystretch}{1.35}
+% Reserva espacio antes de un bloque usando solo comandos de LaTeX.
+\newcommand{\reservarespacio}[1]{%
+  \par
+  \ifdim\dimexpr\pagegoal-\pagetotal\relax<#1\relax
+    \newpage
+  \fi
+}
+\begin{document}
+{\LARGE\bfseries\color{accent} Relaciones volumétricas\par}
+\medskip
+{\large Diagrama de fases e informe de cálculo\par}`];
+    if(report.project)content.push(`\\medskip\\textbf{${text(report.project)}}\\par`);
+    content.push(`\\medskip ${text(date.toLocaleString('es-MX'))} \\quad Sistema ${system} \\quad $\\gamma_w=${resultValue('gammaw',values.gammaw,system)}$\\par`);
+    if(report.warnings?.length)content.push(String.raw`\section*{Observaciones}`,String.raw`\begin{itemize}`,...report.warnings.map(w=>`\\item ${text(w)}`),String.raw`\end{itemize}`);
+    content.push(String.raw`\section{Datos de entrada}`,table(inputKeys,report));
+    content.push(String.raw`\reservarespacio{9cm}`,String.raw`\section{Diagrama de fases del suelo}`,diagram(report));
+    content.push(String.raw`\section{Resultados}`,table(keys,report,true));
+    content.push(String.raw`\section{Desarrollo paso a paso}`,String.raw`Las sustituciones usan $\omega$, $n$ y $S$ como fracciones decimales. Sus resultados finales se expresan en porcentaje. Se muestran seis cifras significativas; los cálculos conservan la precisión interna.`);
+    if(!steps.length)content.push('No se obtuvieron variables adicionales. Agrega datos independientes para ampliar el cálculo.');
+    steps.forEach((step,i)=>{
+      content.push(String.raw`\reservarespacio{4.5cm}`,`\\subsection*{Paso ${i+1}: ${text(root.Soil.byKey[step.key].label)}}`);
+      content.push(`\\[${symbols[step.key]} = ${expression(step.expression)}\\]`);
+      content.push(`\\[${symbols[step.key]} = ${expression(step.expression,values)} = ${number(step.value)}\\]`);
+      content.push(`\\noindent\\textbf{Resultado:} $\\boxed{${symbols[step.key]} = ${resultValue(step.key,step.value,system)}}$\\par`);
+    });
+    content.push(String.raw`\section{Interpretación}`,...root.Soil.classify(values).map(line=>`${text(line)}\\par`));
+    content.push(String.raw`\section{Fórmulas de referencia}
+\begin{align*}
+W &= W_s+W_w & V &= V_s+V_v & V_v &= V_w+V_a \\
+\omega &= \frac{W_w}{W_s} & e &= \frac{V_v}{V_s} & n &= \frac{e}{1+e} \\
+S &= \frac{V_w}{V_v} & G_s\omega &= Se & G_s &= \frac{W_s}{V_s\gamma_w}
+\end{align*}
+\[\gamma=\frac{W}{V}=\frac{G_s\gamma_w(1+\omega)}{1+e},\qquad
+\gamma_d=\frac{W_s}{V}=\frac{G_s\gamma_w}{1+e}\]
+\[\gamma_{sat}=\frac{(G_s+e)\gamma_w}{1+e},\qquad \gamma'=\gamma_{sat}-\gamma_w\]
+\bigskip\hrule\medskip
+{\small Relaciones volumétricas}
+\end{document}`);
+    return content.join('\n');
+  }
+  root.SoilLatex={build,expression,text,number};
+})(globalThis);
+
+</script>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const {variables,byKey,fmt,unit,display,solve,classify} = Soil;
+const escapeHTML = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let current=null;
+let system='SI';
+let compiling=false;
+let previewUrl=null;
+let previewReport=null;
+function clearPreview(){
+  $('pdf-frame').removeAttribute('src');
+  $('pdf-preview').hidden=true;
+  $('save-pdf').removeAttribute('href');
+  $('open-pdf').removeAttribute('href');
+  if(previewUrl)URL.revokeObjectURL(previewUrl);
+  previewUrl=null;previewReport=null;
+}
+function showPreview(pdf,report){
+  clearPreview();
+  previewUrl=URL.createObjectURL(pdf);previewReport=report;
+  $('pdf-frame').src=previewUrl;
+  $('save-pdf').href=previewUrl;
+  $('open-pdf').href=previewUrl;
+  $('pdf-preview').hidden=false;
+  $('pdf-preview').scrollIntoView({behavior:'smooth',block:'start'});
+  $('pdf-preview-title').focus({preventScroll:true});
+}
+function updateExportButtons(){
+  for(const id of ['print','download','download-tex']) $(id).disabled=!current;
+  $('latex-pdf').disabled=!current||compiling;
+}
+const groups=[['Pesos',['W','Ws','Ww']],['Volúmenes',['V','Vs','Vv','Vw','Va']],['Propiedades',['Gs','w','e','n','S']],['Pesos unitarios',['gamma','gammad','gammasat','gammasub']]];
+$('input-groups').innerHTML=groups.map(([name,keys])=>`<fieldset><legend>${name}</legend><div class="field-grid">${keys.map(key=>`<label class="field" for="input-${key}"><span class="field-name"><strong>${byKey[key].symbol}</strong> · ${byKey[key].label}</span><input id="input-${key}" data-key="${key}" inputmode="decimal" autocomplete="off" placeholder="${unit(key,system)}" aria-label="${byKey[key].label}, ${unit(key,system)}"></label>`).join('')}</div></fieldset>`).join('');
+
+function showStatus(messages,error=false) {
+  $('status').hidden=!messages.length;
+  $('status').className=`status${error?'':' success'}`;
+  $('status').setAttribute('role',error?'alert':'status');
+  $('status').innerHTML=messages.length===1?escapeHTML(messages[0]):`<ul>${messages.map(m=>`<li>${escapeHTML(m)}</li>`).join('')}</ul>`;
+}
+function invalidate() {
+  const hadReport=!!current;
+  current=null;
+  clearPreview();
+  updateExportButtons();
+  $('report').hidden=true;
+  $('empty').hidden=false;
+  $('print-help').hidden=true;
+  if(hadReport) showStatus(['Cambiaste los datos. Vuelve a calcular para actualizar el informe.']);
+}
+function parseNumber(text) {
+  const cleaned=text.trim();
+  if(!/^[+-]?(?:\d+(?:[.,]\d*)?|[.,]\d+)(?:e[+-]?\d+)?$/i.test(cleaned)) return NaN;
+  return Number(cleaned.replace(',','.'));
+}
+function readInput() {
+  const input={},errors=[];
+  for(const el of document.querySelectorAll('[data-key]')) {
+    el.removeAttribute('aria-invalid');
+    if(!el.value.trim()) continue;
+    const key=el.dataset.key;
+    let value=parseNumber(el.value);
+    if(byKey[key].type==='percent') value/=100;
+    const error=Soil.validate(key,value);
+    if(error){errors.push(`${byKey[key].label}: ${error}.`);el.setAttribute('aria-invalid','true');}
+    else input[key]=value;
+  }
+  const gammaw=parseNumber($('gammaw').value);
+  const waterError=Soil.validate('gammaw',gammaw);
+  $('gammaw').removeAttribute('aria-invalid');
+  if(waterError){errors.push(`γw: ${waterError}.`);$('gammaw').setAttribute('aria-invalid','true');}
+  if(!Object.keys(input).length && !errors.length) errors.push('Ingresa los datos conocidos de la muestra o usa el ejemplo.');
+  return {input,gammaw,errors};
+}
+function calculate(event) {
+  if(event) event.preventDefault();
+  invalidate();
+  const {input,gammaw,errors}=readInput();
+  if(errors.length){showStatus(errors,true);document.querySelector('[aria-invalid=true]')?.focus();return;}
+  const result=solve(input,gammaw);
+  if(result.errors.length){showStatus(result.errors,true);return;}
+  current={...result,system,project:$('project').value.trim(),date:new Date()};
+  $('report').innerHTML=renderReport(current);
+  $('report').hidden=false;
+  $('empty').hidden=true;
+  updateExportButtons();
+  $('print-help').hidden=false;
+  showStatus([result.warnings.some(w=>w.startsWith('Cálculo parcial'))?'Informe parcial disponible. Revisa los datos pendientes en el reporte.':`Informe listo. ${result.steps.length} pasos de cálculo completados.`]);
+}
+function table(keys,report,origin=false) {
+  return `<table class="report-table"><thead><tr><th scope="col">Variable</th><th scope="col">Símbolo</th><th scope="col" class="numeric">Valor</th><th scope="col">Unidad</th>${origin?'<th scope="col">Origen</th>':''}</tr></thead><tbody>${keys.map(key=>`<tr><td>${byKey[key].label}</td><td>${byKey[key].symbol}</td><td class="numeric">${display(key,report.values[key])}</td><td>${unit(key,report.system)}</td>${origin?`<td class="tag">${key==='gammaw'?'Referencia':report.inputKeys.includes(key)?'Dato':'Calculado'}</td>`:''}</tr>`).join('')}</tbody></table>`;
+}
+function phaseDiagram(report) {
+  const v=report.values;
+  if(!['V','Vs','Vw','Va'].every(k=>Number.isFinite(v[k])) || v.V<=0) return '<p class="diagram-note">Para dibujar las fases a escala faltan los volúmenes. Agrega un volumen o peso de referencia y los datos necesarios para obtener Vs, Vw y Va. Los resultados disponibles se muestran en la tabla.</p>';
+  const top=85,height=245,bottom=top+height,x=200,width=175,weightX=480,weightW=125;
+  const hs=v.Vs/v.V*height,hw=v.Vw/v.V*height,ha=v.Va/v.V*height;
+  const ys=bottom-hs,yw=ys-hw;
+  const text=(tx,ty,content,anchor='middle',fill='#183b3b',size=13)=>`<text x="${tx}" y="${ty}" text-anchor="${anchor}" fill="${fill}" font-size="${size}" font-family="Segoe UI, Arial, sans-serif">${escapeHTML(content)}</text>`;
+  const rect=(rx,ry,rw,rh,color)=>`<rect x="${rx}" y="${ry}" width="${rw}" height="${Math.max(0,rh)}" fill="${color}" stroke="white" stroke-width="1.5"/>`;
+  const dimension=(dx,y1,y2,color)=>`<path d="M${dx-5} ${y1}h10 M${dx} ${y1}V${y2} M${dx-5} ${y2}h10" fill="none" stroke="${color}" stroke-width="1.4"/>`;
+  let svg=text(x+width/2,30,'VOLUMEN','middle','#14655d',13)+text(weightX+weightW/2,30,'PESO','middle','#14655d',13);
+  svg+=rect(x,top,width,ha,'#d6e2dd')+rect(x,yw,width,hw,'#3a829b')+rect(x,ys,width,hs,'#ad744b');
+  if(ha>32) svg+=text(x+width/2,top+ha/2+4,'AIRE');
+  if(hw>32) svg+=text(x+width/2,yw+hw/2+4,'AGUA','middle','#fff');
+  if(hs>32) svg+=text(x+width/2,ys+hs/2+4,'SÓLIDOS','middle','#fff');
+  // Vv queda a la izquierda de su propia cota; V usa una cota independiente a la derecha.
+  if(ha+hw>0) {
+    svg+=dimension(178,top,ys,'#a8563d');
+    svg+=text(148,(top+ys)/2-6,'Vv','end','#a8563d',12)+text(148,(top+ys)/2+15,fmt(v.Vw+v.Va),'end','#a8563d',12);
+  }
+  svg+=dimension(400,top,bottom,'#47625b')+text(425,210,'V','start','#47625b',12);
+  svg+=text(x+width/2,365,`V = ${fmt(v.V)} ${unit('V',report.system)}`,'middle','#183b3b',12);
+  if(Number.isFinite(v.Ws)&&Number.isFinite(v.Ww)&&v.Ws+v.Ww>0) {
+    const total=v.Ws+v.Ww,solid=v.Ws/total*height,water=v.Ww/total*height;
+    svg+=rect(weightX,top,weightW,water,'#69a1b5')+rect(weightX,bottom-solid,weightW,solid,'#c59c55');
+    if(solid>32) svg+=text(weightX+weightW/2,bottom-solid/2+4,'Ws');
+    if(water>32) svg+=text(weightX+weightW/2,top+water/2+4,'Ww');
+    svg+=text(weightX+weightW/2,60,'Wa = 0','middle','#5c706f',11)+text(weightX+weightW/2,365,`W = ${fmt(total)} ${unit('W',report.system)}`,'middle','#183b3b',12);
+  } else svg+=text(weightX+weightW/2,185,'Faltan pesos','middle','#5c706f',12);
+  const summary=`Volúmenes: sólidos ${fmt(v.Vs)}, agua ${fmt(v.Vw)}, aire ${fmt(v.Va)}, vacíos ${fmt(v.Vw+v.Va)} y total ${fmt(v.V)} ${unit('V',report.system)}.`;
+  return `<figure class="phase-figure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 390" role="img" aria-labelledby="phase-title phase-desc"><title id="phase-title">Diagrama de fases del suelo</title><desc id="phase-desc">${escapeHTML(summary)}</desc>${svg}</svg><figcaption>${escapeHTML(summary)} Las alturas representan las proporciones de cada columna. Las fases muy pequeñas se consultan en la tabla de resultados.</figcaption></figure>`;
+}
+function renderReport(report) {
+  const keys=variables.filter(v=>report.values[v.key]!==undefined).map(v=>v.key);
+  const summary=['e','n','S'].map(key=>`<div class="summary-card">${byKey[key].label}<strong>${report.values[key]!==undefined?display(key,report.values[key]):'—'}${byKey[key].type==='percent'&&report.values[key]!==undefined?' %':''}</strong><small>${byKey[key].symbol}${report.values[key]===undefined?' · pendiente':''}</small></div>`).join('');
+  return `<header class="report-heading"><p class="eyebrow">MECÁNICA DE SUELOS · INFORME DE CÁLCULO</p><h2>Relaciones volumétricas</h2>${report.project?`<p class="project">${escapeHTML(report.project)}</p>`:''}<p class="report-meta">${report.date.toLocaleString('es-MX')} · Sistema ${report.system==='SI'?'SI (kN, m³)':'CGS (gf, cm³)'} · γw = ${fmt(report.values.gammaw)} ${unit('gammaw',report.system)}</p><p class="report-meta">Relaciones volumétricas y gravimétricas del suelo</p></header>
+  <div class="summary-cards">${summary}</div>
+  ${report.warnings.length?`<section class="report-section"><h3 class="section-title">Observaciones</h3><div class="notice">${report.warnings.map(w=>`<p>${escapeHTML(w)}</p>`).join('')}</div></section>`:''}
+  <section class="report-section"><h3 class="section-title"><span>01</span> Datos de entrada</h3>${table(report.inputKeys,report)}<p class="report-note">Peso específico del agua: γw = ${fmt(report.values.gammaw)} ${unit('gammaw',report.system)}.</p></section>
+  <section class="report-section"><h3 class="section-title"><span>02</span> Diagrama de fases del suelo</h3>${phaseDiagram(report)}</section>
+  <section class="report-section"><h3 class="section-title"><span>03</span> Resultados</h3>${table(keys,report,true)}</section>
+  <section class="report-section"><h3 class="section-title"><span>04</span> Desarrollo paso a paso</h3><p class="report-note">En las sustituciones, ω, n y S se usan como fracciones decimales. Los resultados se presentan en porcentaje. Se muestran hasta seis cifras significativas; el cálculo conserva la precisión interna.</p>${report.steps.length?report.steps.map((step,i)=>`<div class="step"><h4>Paso ${i+1} · ${byKey[step.key].label}</h4><p class="formula">${escapeHTML(step.formula)}</p><p class="substitution">${byKey[step.key].symbol} = ${escapeHTML(step.substitution)} = ${fmt(step.value)}${byKey[step.key].type==='percent'?' (fracción)':''}</p><p class="step-result">${byKey[step.key].symbol} = ${display(step.key,step.value)} ${unit(step.key,report.system)==='—'?'':unit(step.key,report.system)}</p></div>`).join(''):'<p class="report-note">No se obtuvieron variables adicionales. Agrega más datos independientes para ampliar el cálculo.</p>'}</section>
+  <section class="report-section"><h3 class="section-title"><span>05</span> Interpretación</h3>${classify(report.values).map(line=>`<p class="report-note">${escapeHTML(line)}</p>`).join('')||'<p class="report-note">Faltan datos para interpretar la saturación y la relación de vacíos.</p>'}</section>
+  <section class="report-section"><h3 class="section-title"><span>06</span> Fórmulas de referencia</h3><ul class="reference-list"><li>W = Ws + Ww; V = Vs + Vv; Vv = Vw + Va</li><li>ω = Ww / Ws; e = Vv / Vs; n = Vv / V = e / (1 + e)</li><li>S = Vw / Vv; Gs × ω = S × e</li><li>Gs = Ws / (Vs × γw)</li><li>γ = W / V = Gs × γw × (1 + ω) / (1 + e)</li><li>γd = Ws / V = Gs × γw / (1 + e)</li><li>γsat = (Gs + e) × γw / (1 + e); γ′ = γsat − γw</li></ul></section>
+  <footer class="report-footer">Relaciones volumétricas</footer>`;
+}
+
+$('soil-form').addEventListener('submit',calculate);
+$('soil-form').addEventListener('input',invalidate);
+$('system').addEventListener('change',()=>{
+  const next=$('system').value;
+  if(next===system) return;
+  const forward=next==='CGS';
+  const factors={weight:1e6/9.80665,volume:1e6,density:1/9.80665,ratio:1,percent:1};
+  for(const el of [...document.querySelectorAll('[data-key]'),$('gammaw')]) {
+    const key=el.dataset.key||'gammaw',factor=factors[byKey[key].type],value=parseNumber(el.value);
+    if(el.value.trim()&&Number.isFinite(value)) el.value=String(Number((value*(forward?factor:1/factor)).toPrecision(12)));
+    if(el.dataset.key){el.placeholder=unit(key,next);el.setAttribute('aria-label',`${byKey[key].label}, ${unit(key,next)}`);}
+  }
+  system=next;
+  document.querySelector('.density-unit').textContent=unit('gammaw',system);
+  invalidate();
+  showStatus(['Se convirtieron los datos numéricos al nuevo sistema de unidades. Pulsa Calcular para actualizar el informe.']);
+});
+$('example').addEventListener('click',()=>{
+  for(const el of document.querySelectorAll('[data-key]')){el.value='';el.removeAttribute('aria-invalid');}
+  const sample={Gs:2.65,w:15,e:0.65,V:system==='SI'?0.001:1000};
+  for(const [key,value] of Object.entries(sample)) $(`input-${key}`).value=value;
+  $('gammaw').value=system==='SI'?'9.81':'1';
+  $('project').value='Muestra de ejemplo';
+  calculate();
+});
+$('clear').addEventListener('click',()=>{
+  invalidate();
+  for(const el of document.querySelectorAll('[data-key]')){el.value='';el.removeAttribute('aria-invalid');}
+  $('gammaw').value=system==='SI'?'9.81':'1';
+  $('gammaw').removeAttribute('aria-invalid');
+  $('project').value='';
+  showStatus([]);
+  $('project').focus();
+});
+$('print').addEventListener('click',()=>{if(current) window.print();});
+function saveFile(blob,filename){
+  const url=URL.createObjectURL(blob);
+  const link=document.createElement('a');link.href=url;link.download=filename;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
+}
+$('download-tex').addEventListener('click',()=>{
+  if(!current)return;
+  try{saveFile(new Blob([SoilLatex.build(current)],{type:'application/x-tex;charset=utf-8'}),'relaciones-volumetricas.tex');showStatus(['Archivo LaTeX descargado. Incluye el diagrama TikZ, los resultados y todas las sustituciones; no requiere imágenes adicionales.']);}
+  catch(error){showStatus([`No se pudo preparar el archivo LaTeX: ${error.message}`],true);}
+});
+$('latex-pdf').addEventListener('click',async()=>{
+  if(!current||compiling)return;
+  if(previewReport===current&&previewUrl){$('pdf-preview').hidden=false;$('pdf-preview').scrollIntoView({behavior:'smooth',block:'start'});$('pdf-preview-title').focus({preventScroll:true});return;}
+  const snapshot=current;
+  compiling=true;updateExportButtons();$('latex-pdf').textContent='Compilando LaTeX…';
+  showStatus(['Compilando el informe con LaTeX. La vista previa aparecerá cuando termine.']);
+  const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),210000);
+  try{
+    const base=location.protocol==='file:'?'http://127.0.0.1:8080':'';
+    const input=Object.fromEntries(snapshot.inputKeys.map(key=>[key,snapshot.values[key]]));
+    const response=await fetch(`${base}/api/pdf`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({input,gammaw:snapshot.values.gammaw,system:snapshot.system,project:snapshot.project}),signal:controller.signal});
+    if(!response.ok){const detail=await response.json().catch(()=>null);throw new Error(detail?.error||'El servicio de LaTeX no está disponible en esta página.');}
+    if(!response.headers.get('Content-Type')?.includes('application/pdf'))throw new Error('El servicio no devolvió un PDF válido.');
+    const pdf=await response.blob();
+    if(current!==snapshot){showStatus(['El cálculo cambió durante la exportación. Exporta de nuevo para descargar el reporte actualizado.']);return;}
+    showPreview(pdf,snapshot);
+    showStatus(['PDF listo. Revísalo en la vista previa y pulsa Descargar PDF cuando quieras guardarlo.']);
+  }catch(error){
+    const message=error.name==='AbortError'?'La compilación tardó demasiado. Inténtalo nuevamente.':error instanceof TypeError?(location.protocol==='file:'?'Inicia el servicio con iniciar-web.cmd y abre http://127.0.0.1:8080 para compilar.':'No se pudo conectar con el servicio de LaTeX. Inténtalo nuevamente en un momento.'):error.message;
+    showStatus([message,'Puedes usar Descargar .tex para obtener el reporte completo y compilarlo por separado.'],true);
+  }finally{clearTimeout(timeout);compiling=false;$('latex-pdf').textContent='Ver PDF LaTeX';updateExportButtons();}
+});
+$('close-preview').addEventListener('click',()=>{$('pdf-preview').hidden=true;$('latex-pdf').focus();});
+$('preview-tex').addEventListener('click',()=>{$('download-tex').click();});
+$('download').addEventListener('click',()=>{
+  if(!current) return;
+  let css=$('app-styles')?.textContent||'';
+  if(!css) {
+    try {css=Array.from(document.styleSheets).map(sheet=>Array.from(sheet.cssRules).map(rule=>rule.cssText).join('\n')).join('\n');}
+    catch {css='body{font:15px Arial,sans-serif;color:#183b3b;margin:30px auto;max-width:850px;padding:20px}table{border-collapse:collapse;width:100%}th,td{padding:9px;border-bottom:1px solid #ccc;text-align:left}svg{width:100%;height:auto}.step,figure{break-inside:avoid}h3{break-after:avoid}p{line-height:1.6}@media print{.no-print{display:none}}';}
+  }
+  const html=`<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Relaciones volumétricas</title><style>${css}\nbody{background:#fff}#report{max-width:900px;margin:24px auto}.standalone-tools{max-width:900px;margin:20px auto;padding:0 15px}@media print{#report{margin:0;max-width:none}}</style></head><body><div class="standalone-tools no-print"><button class="button primary" onclick="window.print()">Guardar como PDF / Imprimir</button><p class="print-help">Este informe está completo y disponible sin conexión. Puedes buscar y seleccionar su texto.</p></div><article id="report">${$('report').innerHTML}</article></body></html>`;
+  const url=URL.createObjectURL(new Blob([html],{type:'text/html;charset=utf-8'}));
+  const link=document.createElement('a');link.href=url;link.download='informe-relaciones-volumetricas.html';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
+});
+
+</script>
+</body>
+</html>

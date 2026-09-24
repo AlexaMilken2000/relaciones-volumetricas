@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Relaciones volumétricas · Mecánica de suelos</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="soil.js" defer></script>
+  <script src="latex.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Saltar al contenido</a>
+  <header class="site-header no-print">
+    <div class="brand"><span class="brand-icon" aria-hidden="true">▱</span><div>MECÁNICA DE SUELOS<small>Laboratorio de relaciones de fase</small></div></div>
+    <span class="local-badge"><span aria-hidden="true">●</span> Funciona sin conexión</span>
+  </header>
+  <main id="workspace">
+    <div class="intro no-print"><p class="eyebrow">ANÁLISIS Y REPORTE</p><h1>Relaciones volumétricas</h1><p>De los datos de tu muestra a un informe claro, paso a paso.</p></div>
+    <div class="workspace-grid">
+      <aside class="input-panel no-print" aria-labelledby="input-title">
+        <div class="panel-heading"><div><span class="eyebrow">01 / ENTRADA</span><h2 id="input-title">Datos de la muestra</h2></div><button type="button" id="example" class="text-button">Usar ejemplo</button></div>
+        <form id="soil-form" novalidate>
+          <label class="field project-field" for="project">Nombre del proyecto o muestra<input id="project" maxlength="120" placeholder="Ej. Muestra de suelo 01"></label>
+          <div class="system-row"><label class="field" for="system">Unidades<select id="system"><option value="SI">SI · kN y m³</option><option value="CGS">CGS · gf y cm³</option></select></label><label class="field" for="gammaw">γw <span class="density-unit">kN/m³</span><input id="gammaw" value="9.81" inputmode="decimal" autocomplete="off"></label></div>
+          <p class="input-help">Ingresa los datos conocidos y deja vacíos los demás. ω, n y S se ingresan en porcentaje: <strong>15 equivale a 15 %.</strong></p>
+          <div id="input-groups"></div>
+          <div class="form-actions"><button class="button primary" type="submit">Calcular relaciones <span aria-hidden="true">→</span></button><button type="button" id="clear" class="button secondary">Limpiar</button></div>
+        </form>
+      </aside>
+      <div class="output-panel">
+        <div id="status" class="status no-print" role="status" aria-live="polite" hidden></div>
+        <div class="report-toolbar no-print"><div><span class="eyebrow">02 / RESULTADO</span><h2>Tu informe</h2></div><div class="toolbar-actions"><button type="button" id="download" class="button secondary" disabled>Descargar HTML</button><button type="button" id="download-tex" class="button secondary" disabled>Descargar .tex</button><button type="button" id="print" class="button secondary" disabled>Imprimir vista web</button><button type="button" id="latex-pdf" class="button primary" disabled>Ver PDF LaTeX</button></div></div>
+        <p id="print-help" class="print-help no-print" hidden><strong>Ver PDF LaTeX</strong> compila el informe y muestra una vista previa. Después puedes descargar el PDF o su archivo <strong>.tex</strong> editable.</p>
+        <section id="pdf-preview" class="pdf-preview no-print" aria-labelledby="pdf-preview-title" hidden>
+          <div class="preview-heading"><div><p class="eyebrow">REPORTE COMPILADO</p><h2 id="pdf-preview-title" tabindex="-1">Vista previa del PDF</h2></div><button type="button" id="close-preview" class="button secondary">Cerrar vista previa</button></div>
+          <div class="preview-actions"><a id="save-pdf" class="button primary" download="relaciones-volumetricas.pdf">Descargar PDF</a><button id="preview-tex" type="button" class="button secondary">Descargar .tex</button><a id="open-pdf" class="button secondary" target="_blank" rel="noopener">Abrir en otra pestaña</a></div>
+          <p class="print-help">Si tu navegador no muestra el documento aquí, usa “Abrir en otra pestaña” o “Descargar PDF”.</p>
+          <iframe id="pdf-frame" title="Informe PDF de relaciones volumétricas"></iframe>
+        </section>
+        <div id="empty" class="empty-state"><div class="empty-art" aria-hidden="true"><span></span><span></span><span></span></div><p class="eyebrow">CADA FASE CUENTA</p><h2>Conoce la composición de tu suelo</h2><p>Completa los datos de la izquierda o carga el ejemplo. Aquí aparecerán el diagrama, los resultados y el desarrollo del cálculo.</p><div class="empty-legend"><span>○ Aire</span><span>● Agua</span><span>■ Sólidos</span></div></div>
+        <article id="report" aria-label="Informe de relaciones volumétricas" hidden></article>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer no-print">Relaciones volumétricas <span>Cálculo local · Vista completa · Reporte imprimible</span></footer>
+  <noscript>Activa JavaScript en tu navegador para realizar los cálculos.</noscript>
+</body>
+</html>
